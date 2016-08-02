@@ -1,0 +1,176 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/style.css" type="text/css" rel="stylesheet"/>
+	<link href="/css/jquery-ui.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+	<script src="/js/jquery-ui.js"></script>
+	<script src="/js/index.js" type="text/javascript"></script>
+	<script type=text/javascript>
+		var render = function(options){
+			$.ajax({
+				url: '/render',
+				method: 'post',
+				data: options,
+				success: function(data){
+					$('body').html(data.html);
+
+					$('div[class*="column-"]').css({'width': data.config.cellSize, 'height': data.config.cellSize});
+
+					console.log(data.config.level);
+
+					$('input[value="' + data.config.level + '"]').attr('checked', 'checked');
+
+					$(window).resize(function(){
+						var newWidth = $(window).width() - 120; // 120 = margin
+						// console.log(newWidth);
+						var cellSize = Math.ceil(newWidth * data.config.cellSize / (options.window.width - 120)) - 1;
+						$('div[class*="column-"]').css({'width': cellSize, 'height': cellSize});
+					});
+
+					$('.settings').click(function(){
+						$(this).removeClass('show');
+						$('.settings-panel').addClass('show');
+					});
+
+					$('.hide-panel').click(function(){
+						$('.settings-panel').removeClass('show');
+						$('.settings').addClass('show');
+					});
+
+					$( "#map-size-x" ).slider({
+						max: 30,
+						min: 3,
+						value: data.config.mapSizeY,
+						create: function(){
+							$("#size-x").text($(this).slider("value"));
+						},
+						change: function(){
+							$( "#computers" ).slider('destroy');
+							$( "#computers" ).slider({
+								max: ($( "#map-size-x" ).slider('value') * $( "#map-size-y" ).slider('value')) - 1,
+								min: 1,
+								value: data.config.computersCount,
+								create: function(){
+									$("#computers-number").text($(this).slider("value"));
+								}
+							});
+						}
+					});
+
+					$( "#map-size-y" ).slider({
+						max: 30,
+						min: 3,
+						value: data.config.mapSizeX,
+						create: function(){
+							$("#size-y").text($(this).slider("value"));
+						},
+						change: function(){
+							$( "#computers" ).slider('destroy');
+							$( "#computers" ).slider({
+								max: ($( "#map-size-x" ).slider('value') * $( "#map-size-y" ).slider('value')) - 1,
+								min: 1,
+								value: data.config.computersCount,
+								create: function(){
+									$("#computers-number").text($(this).slider("value"));
+								}
+							});
+						}
+					});
+
+					$( "#computers" ).slider({
+						max: ($( "#map-size-x" ).slider('value') * $( "#map-size-y" ).slider('value')) - 1,
+						min: 1,
+						value: data.config.computersCount,
+						create: function(){
+							$("#computers-number").text($(this).slider("value"));
+						}
+					});
+
+					$("#map-size-x").on("slide", function(event, ui){
+						$('#size-x').text(ui.value);
+						$('input[name="level"]:checked').removeAttr('checked');
+					});
+
+					$("#map-size-y").on("slide", function(event, ui){
+						$('#size-y').text(ui.value);
+						$('input[name="level"]:checked').removeAttr('checked');
+					});
+
+					$("#computers").on("slide", function(event, ui){
+						$('#computers-number').text(ui.value);
+						$('input[name="level"]:checked').removeAttr('checked');
+					});
+
+					$('#render').click(function(){
+						var width = $(window).width();
+						var height = $(window).height();
+
+						var level = $('input[name="level"]:checked').val();
+						
+						var xCells = $('#map-size-x').slider('value');
+						var yCells = $('#map-size-y').slider('value');
+
+						var cellSize = Math.ceil((width - 120) / xCells) - 1;
+
+						if(cellSize > 51){
+							cellSize = 51;
+						}
+
+						var computersNumber = $('#computers').slider('value');
+
+						options = {};
+
+						options.window = {};
+
+						options.window.width = $(window).width();
+						options.window.height = $(window).height();
+
+						options.game = {};
+
+						if(typeof(level) !== 'undefined'){
+							options.game.level = level;
+						}
+
+						options.game.rowLength = xCells;
+						options.game.columnLength = yCells;
+
+						options.game.cellSize = cellSize;
+
+						if(computersNumber < options.game.rowLength * options.game.columnLength){
+							options.game.computersCount = computersNumber;
+						}
+						
+						render(options);
+					});
+				}
+			});
+		}
+
+		$(document).ready(function(){
+			var options = {};
+
+			options.window = {};
+
+			options.window.width = $(window).width();
+			options.window.height = $(window).height();
+
+			options.game = {};
+
+			options.game.rowLength = Math.ceil((options.window.width - 120) / 51) - 1; // 120 = margin
+			options.game.columnLength = options.game.rowLength;
+
+			options.game.cellSize = 51;
+
+			options.game.computersCount = options.game.rowLength * options.game.columnLength - 1;
+
+			console.log(options.game.computersCount);
+
+			render(options);
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

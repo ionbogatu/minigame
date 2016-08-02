@@ -1,0 +1,285 @@
+body{
+	background: url('http://www.livingmusicradio.com/wp-content/uploads/2016/07/wallpaper-2220363.jpg');
+	background-size: cover;
+	margin: 0;
+	background-repeat: no-repeat;
+}
+
+.map, .minimap{
+	width: 100%;
+	height: auto;
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+div[class^="row-"], .minirow{
+	height: auto;
+}
+
+.wrapper{
+	height: auto;
+	width: auto;
+	display: inline-block;
+	border: 1px dashed silver;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+div[class*="column-"]{
+	height: 51px;
+	width: 51px;
+	background-repeat: no-repeat;
+}
+
+div.minicolumn{
+	display: inline-block;
+	height: 15.7px;
+	width: 15.7px;
+	display: inline-block;
+    border: 1px dashed silver;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+div.server{
+	background: green;
+}
+
+div.computer{
+	background: red;
+}
+
+div.serverOutput{
+	background: blue;
+}
+
+div.serverTop{
+	background-image: url('/images/server-top.png');
+	background-size: contain;
+}
+
+div.serverRight{
+	background-image: url('/images/server-right.png');
+	background-size: contain;
+}
+
+div.serverBottom{
+	background-image: url('/images/server-bottom.png');
+	background-size: contain;
+}
+
+div.serverLeft{
+	background-image: url('/images/server-left.png');
+	background-size: contain;
+}
+
+div.computerOnTop{
+	background-image: url('/images/computer-on-top.png');
+	background-size: contain;
+}
+
+div.computerOnRight{
+	background-image: url('/images/computer-on-right.png');
+	background-size: contain;
+}
+
+div.computerOnBottom{
+	background-image: url('/images/computer-on-bottom.png');
+	background-size: contain;
+}
+
+div.computerOnLeft{
+	background-image: url('/images/computer-on-left.png');
+	background-size: contain;
+}
+
+div.computerOffTop{
+	background-image: url('/images/computer-off-top.png');
+	background-size: contain;
+}
+
+div.computerOffRight{
+	background-image: url('/images/computer-off-right.png');
+	background-size: contain;
+}
+
+div.computerOffBottom{
+	background-image: url('/images/computer-off-bottom.png');
+	background-size: contain;
+}
+
+div.computerOffLeft{
+	background-image: url('/images/computer-off-left.png');
+	background-size: contain;
+}
+
+div.wireVerticalLine{
+	background-image: url('/images/vertical-line.png');
+	background-size: contain;
+}
+
+div.wireHorizontalLine{
+	background-image: url('/images/horizontal-line.png');
+	background-size: contain;
+}
+
+div.wireCorner1{
+	background-image: url('/images/corner-1.png');
+	background-size: contain;
+}
+
+div.wireCorner2{
+	background-image: url('/images/corner-2.png');
+	background-size: contain;
+}
+
+div.wireCorner3{
+	background-image: url('/images/corner-3.png');
+	background-size: contain;
+}
+
+div.wireCorner4{
+	background-image: url('/images/corner-4.png');
+	background-size: contain;
+}
+
+div.wireT1{
+	background-image: url('/images/t-1.png');
+	background-size: contain;
+}
+
+div.wireT2{
+	background-image: url('/images/t-2.png');
+	background-size: contain;
+}
+
+div.wireT3{
+	background-image: url('/images/t-3.png');
+	background-size: contain;
+}
+
+div.wireT4{
+	background-image: url('/images/t-4.png');
+	background-size: contain;
+}
+
+div.cross{
+	background-image: url('/images/cross.png');
+	background-size: contain;
+}
+
+.rotate{
+	transform: rotateZ(90deg);
+}
+
+.win-msg{
+	position: absolute;
+	color: white;
+	margin-bottom: 10px;
+	text-align: center;
+    background: #4EC1EC;
+    top: 0;
+    margin-top: 0;
+    width: 100%;
+}
+
+.settings{
+	position: absolute;
+	top: 20px;
+	left: -1000px;
+	width: 35px;
+	height: 35px;
+	margin-left: 20px;
+	background: url('/images/settings-bg.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	transition: left 0.2s ease-in-out;
+}
+
+.settings-panel{
+	position: fixed;
+	top: 0;
+	left: -1000;
+	width: 20%;
+	height: 100%;
+	background: #333;
+	border-right: 3px solid #555;
+	box-shadow: 0 -10px 20px rgba(0,0,0,0.5) inset;
+	transition: left 0.2s ease-in-out;
+}
+
+.show{
+	left: 0 !important;
+}
+
+.hide-panel{
+	color: #555;
+	text-align: center;
+	background: #222;
+	cursor: pointer;
+	font-size: 20px;
+	padding: 5px 0;
+	margin-top: 20px;
+}
+
+.settings-form{
+	width: 80%;
+	margin-left: 30px;
+	margin-top: 50px;
+	color: #555;
+}
+
+.settings-form label{
+	display: block;
+	width: 100%;
+	margin-left: -10px;
+	border-bottom: 1px solid #555;
+	padding: 5px 0;
+}
+
+.level-radio{
+	display: inline-block;
+}
+
+.settings-form input[type="radio"]{
+	color: white;
+	cursor: pointer;
+}
+
+.custom-settings-fieldset{
+	margin-top: 50px !important;
+}
+
+.settings-map-size{
+	margin-top: 20px;
+}
+
+.settings-map-size label, .computers-number label{
+	margin-left: 10 !important;
+	font-size: 14px;
+	border: none;
+	display: inline-block;
+	width: auto;
+}
+
+#size-x, #size-y, #computers-number{
+	background: white;
+	border: 1px solid lightblue;
+	margin-left: 3px;
+}
+
+#map-size-y, #map-size-x, #computers{
+	margin: 10px 0;
+}
+
+#render{
+	width: 80%;
+	margin: 16px auto;
+	background: #111;
+	border: 0;
+	color: white;
+	padding: 3px 0;
+	display: block;
+	cursor: pointer;
+}
